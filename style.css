@@ -1,0 +1,180 @@
+.on-going, .on-going * { box-sizing: border-box; }.on-going {background: #000000; width: 1366px; height: 1772px; position: relative; overflow: hidden;}
+ .frame-48098139 {display: flex; flex-direction: row; gap: 16px; align-items: center; justify-content: flex-start; position: absolute; left: 282.75px;top: 112px;}
+ .arrow-chevron-big-left {flex-shrink: 0; position: relative; overflow: visible;}
+ .pocket-detail {color: var(--primary-white, #ffffff); text-align: left; font: var(--heading-h-3, 600 32px/112% 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ .frame-48098196 {display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: flex-start; position: absolute; left: 1091px;top: 180px;}
+ .my-pockets {color: var(--text-40, #99a8c6); text-align: left; font: var(--heading-h-1, 500 20px/116% 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ .frame-48098174 {display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; width: 162px; position: relative;}
+ .my-pockets-mini {border-radius: 12px; border-style: solid; border-color: var(--greyscale-black-80, #353c4b); border-width: 1px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48098175 {display: flex; flex-direction: row; gap: 16px; align-items: flex-start; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48097709 {background: var(--greyscale-black-10, #f0f3fa); border-radius: 26.54px; padding: 0px 6.15px 0px 6.15px; display: flex; flex-direction: row; gap: 0px; align-items: center; justify-content: center; flex-shrink: 0; width: 40px; height: 40px; position: relative;}
+ .nft-uk-r-4-u-7-w-kxy-9-q-la-x-2-t-gvd-9-o-zs-wo-mo-4-jq-s-jqd-mb-7-nk-1 {border-radius: 18.46px; flex-shrink: 0; width: 36.92px; height: 36.92px; position: relative;}
+ .frame-48098168 {display: flex; flex-direction: column; gap: 4px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .sol-btc {color: #ffffff; text-align: left; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ ._146-423 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative; width: 62px;}
+ .frame-48098170 {border-radius: 12px; border-style: solid; border-color: var(--greyscale-black-80, #353c4b); border-width: 1px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48098171 {border-radius: 12px; border-style: solid; border-color: var(--greyscale-black-80, #353c4b); border-width: 1px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48098172 {border-radius: 12px; border-style: solid; border-color: var(--greyscale-black-80, #353c4b); border-width: 1px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48098173 {border-radius: 12px; border-style: solid; border-color: var(--greyscale-black-80, #353c4b); border-width: 1px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48097872 {background: #2c264f; border-radius: 12px; padding: 40px 16px 16px 16px; display: flex; flex-direction: column; gap: 16px; align-items: center; justify-content: flex-start; flex-shrink: 0; width: 162px; position: relative;}
+ .you-have-3-closed-pockets-you-can-withdraw-your-funds {color: var(--blackand-white-white, #ffffff); text-align: center; font: var(--body-small-medium, 500 12px/135% 'Poppins', sans-serif); position: relative; align-self: stretch;}
+ .button {border-radius: 30px; border-style: solid; border-color: var(--main-main, #735cf7); border-width: 1px; padding: 8px 142px 8px 142px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .button2 {color: var(--main-main, #735cf7); text-align: center; font: var(--body-medium-semi-bold, 600 14px/142% 'Poppins', sans-serif); position: relative;}
+ .iconly-light-close {flex-shrink: 0; width: 24px; height: 24px; position: absolute; left: 130px;top: 8px;}
+ .close-square {position: absolute; left: 6px;top: 6px; overflow: visible;}
+ .frame-48098194 {display: flex; flex-direction: column; gap: 32px; align-items: center; justify-content: flex-start; position: absolute; left: 283.25px;top: 180px;}
+ .pocket-pecent {background: var(--card-ln, linear-gradient(180deg, rgba(115, 92, 247, 1.00) 0%,rgba(72, 46, 222, 1.00) 100%)); border-radius: 12px; padding: 16px 16px 16px 16px; display: flex; flex-direction: row; gap: 16px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; width: 776px; position: relative; overflow: hidden;}
+ .frame-48098246 {display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .frame-48098141 {display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .frame-480977092 {background: var(--greyscale-black-10, #f0f3fa); border-radius: 21.23px; padding: 0px 4.92px 0px 4.92px; display: flex; flex-direction: row; gap: 0px; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; position: relative;}
+ .nft-uk-r-4-u-7-w-kxy-9-q-la-x-2-t-gvd-9-o-zs-wo-mo-4-jq-s-jqd-mb-7-nk-12 {border-radius: 14.77px; flex-shrink: 0; width: 29.54px; height: 29.54px; position: relative;}
+ .sol-usdc {color: #ffffff; text-align: left; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ .popup-2 {flex-shrink: 0; position: relative; overflow: visible;}
+ .frame-48098143 {flex-shrink: 0; width: 156.55px; height: 156.55px; position: absolute; left: 581.45px;top: 46.77px;}
+ .ellipse-2142 {border-radius: 50%; border-width: 24px; border-style: solid; border-image: linear-gradient(180deg, rgba(110, 87, 243, 1.00) 0%,rgba(78, 53, 226, 0.00) 100%); border-image-slice: 1; width: 156.55px; height: 156.55px; position: absolute; left: 0px;top: 0px;}
+ .ellipse-2143 {background: linear-gradient(180deg, rgba(110, 87, 243, 1.00) 0%,rgba(84, 59, 227, 0.00) 100%); border-radius: 50%; width: 80px; height: 80px; position: absolute; left: 38.28px;top: 38.28px;}
+ ._146-4232 {color: #ffffff; text-align: left; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: absolute; left: 684px;top: 12px;}
+ .frame-48098193 {display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; flex-shrink: 0; width: 774.75px; position: relative;}
+ .frame-48098188 {display: flex; flex-direction: column; gap: 27px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; width: 370px; position: relative;}
+ .strategy-desk {padding: 12px 0px 12px 0px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .strategy {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-large-regular, 400 16px/125% 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ .frame-48097840 {display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .frame-48098084 {display: flex; flex-direction: row; gap: 8px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ ._10-sol-100-517-06-block {color: var(--text, #7886a0); text-align: right; font: var(--body-x-small-light, 300 10px/16px 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-end}
+ .pool-info-desk {display: flex; flex-direction: column; gap: 8px; align-items: flex-start; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .pool-info {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-large-regular, 400 16px/125% 'Poppins', sans-serif); position: relative;}
+ .frame-48097847 {background: var(--background-dark-2, #121320); border-radius: 12px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-480978472 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 16px 0px 16px 0px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .strategy2 {color: var(--text-40, #99a8c6); text-align: left; font: var(--body-medium-regular, 400 14px/142% 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ ._10-usdc-monthly {color: var(--blackand-white-white, #ffffff); text-align: right; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: relative; width: 195px; display: flex;align-items: center;justify-content: flex-end}
+ .frame-48097849 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 16px 0px 16px 0px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ ._10-usdc-monthly2 {color: #ffffff; text-align: right; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: relative; width: 195px; display: flex;align-items: center;justify-content: flex-end}
+ .progress-desk {display: flex; flex-direction: column; gap: 8px; align-items: flex-start; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .progress {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-large-regular, 400 16px/125% 'Poppins', sans-serif); position: relative;}
+ .frame-480978473 {background: var(--background-dark-2, #121320); border-radius: 12px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 16px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48097843 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 16px 0px 16px 0px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48097845 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 16px 0px 16px 0px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48097850 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 16px 0px 16px 0px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48097848 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 16px 0px 16px 0px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ ._10-usdc-monthly3 {color: var(--alert-success, #26c673); text-align: right; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: relative; width: 195px; display: flex;align-items: center;justify-content: flex-end}
+ .frame-48098192 {display: flex; flex-direction: column; gap: 32px; align-items: flex-start; justify-content: flex-start; align-self: stretch;flex-shrink: 0; width: 370px; position: relative;}
+ .next-batch-desk {display: flex; flex-direction: column; gap: 8px; align-items: flex-start; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .next-batch {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-large-regular, 400 16px/125% 'Poppins', sans-serif); position: relative;}
+ .frame-480978482 {background: var(--background-dark-2, #121320); border-radius: 12px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .ic-24-info {flex-shrink: 0; position: relative; transform: translate(-20px, 0px); overflow: visible;}
+ .button3 {border-radius: 30px; border-style: solid; border-color: var(--main-main, #735cf7); border-width: 1px; padding: 12px 142px 12px 142px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .group-48096785 {flex-shrink: 0; width: 264px; height: 89px; position: static;}
+ .group-48096776 {width: 264px; height: 80px; position: static;}
+ .frame-48098087 {background: var(--background-dark-3, #242636); border-radius: 8px; padding: 10px 12px 10px 12px; display: flex; flex-direction: row; gap: 10px; align-items: flex-start; justify-content: flex-start; position: absolute; left: 98.38px;top: -3px;}
+ .deposit-amount-the-amount-each-batch-the-current-source-token-in-pocket {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--small-text, 400 12px/20px 'Poppins', sans-serif); position: relative; width: 240px;}
+ .polygon-1 {position: absolute; left: 347.77px;top: 86px; transform: translate(-10.39px, -9px); overflow: visible;}
+ .end-conditions-desk {display: flex; flex-direction: column; gap: 8px; align-items: flex-start; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .end-conditions {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-large-regular, 400 16px/125% 'Poppins', sans-serif); position: relative;}
+ .frame-480978474 {background: var(--background-dark-2, #121320); border-radius: 12px; padding: 4px 16px 4px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .frame-48097851 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 16px 0px 16px 0px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .tp-sl {display: flex; flex-direction: column; gap: 8px; align-items: flex-start; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .tp-sl2 {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-large-regular, 400 16px/125% 'Poppins', sans-serif); position: relative;}
+ .status-desk {display: flex; flex-direction: row; align-items: center; justify-content: space-between; align-self: stretch;flex-shrink: 0; position: relative;}
+ .status {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ .frame-48098267 {display: flex; flex-direction: column; gap: 4px; align-items: flex-end; justify-content: center; flex-shrink: 0; position: relative;}
+ .frame-48097882 {display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: flex-end; flex-shrink: 0; position: relative;}
+ .tag {background: rgba(38, 198, 115, 0.12); border-radius: 6px; padding: 6px 10px 6px 10px; display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: center; flex-shrink: 0; position: relative;}
+ .tag-marker {color: var(--alert-success, #26c673); text-align: left; font: var(--body-x-small-regular, 400 10px/16px 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ .button-desk {display: flex; flex-direction: row; gap: 16px; align-items: center; justify-content: center; align-self: stretch;flex-shrink: 0; position: relative;}
+ .button-primary {background: var(--main-main, #735cf7); border-radius: 30px; padding: 12px 0px 12px 0px; display: flex; flex-direction: row; gap: 10px; align-items: center; justify-content: center; flex: 1; position: relative;}
+ .frame-48098095 {display: flex; flex-direction: row; gap: 12px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .iconly-light-arrow-right {flex-shrink: 0; width: 20px; height: 20px; position: relative;}
+ .button4 {color: var(--blackand-white-white, #ffffff); text-align: center; font: var(--body-medium-semi-bold, 600 14px/142% 'Poppins', sans-serif); position: relative;}
+ .frame-48098190 {display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .bought-transaction {color: var(--text-40, #99a8c6); text-align: left; font: var(--heading-h-1, 500 20px/116% 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ .transaction {background: var(--background-dark-2, #121320); border-radius: 12px; padding: 16px 16px 16px 16px; display: flex; flex-direction: row; gap: 8px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; width: 775px; height: 284px; position: relative; overflow: hidden;}
+ .frame-480978475 {border-radius: 8px; padding: 4px 16px 4px 16px; display: flex; flex-direction: column; gap: 0px; align-items: flex-end; justify-content: flex-start; flex: 1; position: relative;}
+ .switch-text-transaction {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 12px 0px 12px 0px; display: flex; flex-direction: row; gap: 72px; align-items: center; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ ._1 {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: relative; width: 33.71px; display: flex;align-items: center;justify-content: flex-start}
+ ._16-02-2023-16-00 {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: relative; width: 160px; display: flex;align-items: center;justify-content: flex-start}
+ .frame-480980842 {display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: center; flex-shrink: 0; position: relative;}
+ ._4-sol {color: var(--blackand-white-white, #ffffff); text-align: right; font: var(--body-small-medium, 500 12px/135% 'Poppins', sans-serif); position: relative; width: 150px; display: flex;align-items: center;justify-content: flex-end}
+ .iconly-light-arrow-right2 {flex-shrink: 0; width: 24px; height: 24px; position: relative;}
+ .arrow-right {position: absolute; left: 4.75px;top: 17.75px; transform: translate(-0.75px, -12.8px); overflow: visible;}
+ ._0-011172270088638-bnb {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-small-medium, 500 12px/135% 'Poppins', sans-serif); position: relative; width: 150px; display: flex;align-items: center;justify-content: flex-start}
+ .frame-480978483 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 12px 0px 12px 0px; display: flex; flex-direction: row; gap: 72px; align-items: center; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .arrow-right2 {position: absolute; left: 4.75px;top: 17.75px; transform: translate(-0.75px, -12.8px); overflow: visible;}
+ .frame-480978492 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 12px 0px 12px 0px; display: flex; flex-direction: row; gap: 72px; align-items: center; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .arrow-right3 {position: absolute; left: 4.75px;top: 17.75px; transform: translate(-0.75px, -12.8px); overflow: visible;}
+ .frame-480978502 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 12px 0px 12px 0px; display: flex; flex-direction: row; gap: 72px; align-items: center; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .arrow-right4 {position: absolute; left: 4.75px;top: 17.75px; transform: translate(-0.75px, -12.8px); overflow: visible;}
+ .frame-480978512 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 12px 0px 12px 0px; display: flex; flex-direction: row; gap: 72px; align-items: center; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .arrow-right5 {position: absolute; left: 4.75px;top: 17.75px; transform: translate(-0.75px, -12.8px); overflow: visible;}
+ .frame-48097852 {border-style: solid; border-color: #1c1d2c; border-width: 0px 0px 1px 0px; padding: 12px 0px 12px 0px; display: flex; flex-direction: row; gap: 72px; align-items: center; justify-content: flex-start; align-self: stretch;flex-shrink: 0; position: relative;}
+ .arrow-right6 {position: absolute; left: 4.75px;top: 17.75px; transform: translate(-0.75px, -12.8px); overflow: visible;}
+ .frame-48098155 {background: var(--background-dark-1, #060710); border-radius: 15px; padding: 10px 10px 10px 10px; align-self: stretch;flex-shrink: 0; width: 252px; position: relative; transform-origin: 0 0; transform: rotate(90deg) scale(1, 1); overflow: hidden;}
+ .rectangle-1555 {background: linear-gradient(-90deg, rgba(115, 92, 247, 1.00) 0%,rgba(72, 46, 222, 1.00) 100%); border-radius: 15px; width: 100.03px; height: 6px; position: absolute; left: 0px;top: 0px;}
+ .frame-48098191 {display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .pocket-performace-chart {color: var(--text-40, #99a8c6); text-align: left; font: var(--heading-h-1, 500 20px/116% 'Poppins', sans-serif); position: relative; display: flex;align-items: center;justify-content: flex-start}
+ .performance-chart {background: var(--background-dark-2, #121320); border-radius: 12px; padding: 16px 16px 16px 16px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; width: 776px; position: relative;}
+ .group-48096721 {flex-shrink: 0; width: 719.49px; height: 228px; position: static;}
+ .rectangle-1540 {background: var(--background-dark-2, #121320); border-radius: 12px; width: 689.74px; height: 212px; position: absolute; left: 16px;top: 16px;}
+ .frame-48097954 {display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; position: absolute; left: 29.74px;top: 28px;}
+ .ellipse-2137 {background: var(--main-main, #735cf7); border-radius: 50%; flex-shrink: 0; width: 7px; height: 7px; position: relative;}
+ .cumlative-pnl {color: var(--blackand-white-white, #ffffff); text-align: left; font: var(--body-large-medium, 500 16px/125% 'Poppins', sans-serif); position: relative;}
+ .vector-35 {position: absolute; left: 86.64px;top: 72.63px; overflow: visible;}
+ .frame-48097956 {display: flex; flex-direction: column; gap: 24px; align-items: flex-start; justify-content: flex-start; width: 47.42px; height: 119px; position: absolute; left: 29.74px;top: 76px;}
+ ._15 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ ._10 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ ._5 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ ._0 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ .frame-48097957 {display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; width: 625.49px; position: absolute; left: 110px;top: 228px;}
+ ._01-04 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ ._15-04 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ ._30-04 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ ._01-05 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ .menu-desktop {border-style: solid; border-color: var(--background-dark-2, #121320); border-width: 0px 1px 0px 0px; padding: 24px 0px 24px 0px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; width: 254px; height: 1220px; position: absolute; left: 0px;top: 80px;}
+ .frame-48098252 {display: flex; flex-direction: column; gap: 24px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .frame-48097972 {background: var(--background-dark-2, #121320); padding: 16px 0px 16px 113px; display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; flex-shrink: 0; width: 254px; position: relative;}
+ .iconly-bold-category {flex-shrink: 0; width: 24px; height: 24px; position: relative;}
+ .category {position: absolute; left: 2px;top: 2px; overflow: visible;}
+ .my-pockets2 {color: var(--main-main, #735cf7); text-align: center; font: var(--body-large-medium, 500 16px/125% 'Poppins', sans-serif); position: relative;}
+ .frame-48097973 {padding: 16px 0px 16px 113px; display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; flex-shrink: 0; width: 254px; position: relative;}
+ .iconly-light-activity {flex-shrink: 0; width: 24px; height: 24px; position: relative;}
+ .activity {position: absolute; left: 2.78px;top: 2.28px; overflow: visible;}
+ .strategy3 {color: var(--text, #7886a0); text-align: left; font: var(--body-large-medium, 500 16px/125% 'Poppins', sans-serif); position: relative; width: 75px;}
+ .frame-48097974 {padding: 16px 0px 16px 113px; display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; flex-shrink: 0; width: 254px; position: relative;}
+ .iconly-light-history {flex-shrink: 0; position: relative; overflow: visible;}
+ .history {color: var(--text, #7886a0); text-align: left; font: var(--body-large-medium, 500 16px/125% 'Poppins', sans-serif); position: relative; width: 75px;}
+ .frame-48097975 {padding: 16px 0px 16px 113px; display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; flex-shrink: 0; width: 254px; position: relative;}
+ .iconly-light-profile {flex-shrink: 0; width: 24px; height: 24px; position: relative;}
+ .profile {position: absolute; left: 4.81px;top: 2.81px; overflow: visible;}
+ .profile2 {color: var(--text, #7886a0); text-align: left; font: var(--body-large-medium, 500 16px/125% 'Poppins', sans-serif); position: relative; width: 75px;}
+ .frame-48098251 {display: flex; flex-direction: column; gap: 0px; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .frame-48097978 {padding: 8px 0px 8px 113px; display: flex; flex-direction: row; gap: 24px; align-items: center; justify-content: flex-start; flex-shrink: 0; width: 254px; position: relative;}
+ .toogle-dark {flex-shrink: 0; width: 50px; height: 28px; position: relative;}
+ .rectangle-2 {background: var(--main-main, #735cf7); border-radius: 504px; width: 50px; height: 28px; position: absolute; left: 0px;top: 0px;}
+ .mask-group {position: absolute; left: 24px;top: 2px; overflow: visible;}
+ .frame-48098271 {display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .globe {flex-shrink: 0; position: relative; overflow: visible;}
+ .en {color: var(--main-main, #735cf7); text-align: left; font: var(--body-large-medium, 500 16px/125% 'Poppins', sans-serif); position: relative;}
+ .frame-48097977 {padding: 8px 0px 8px 113px; display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; flex-shrink: 0; width: 254px; position: relative;}
+ .term-of-service {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ .frame-48097979 {padding: 8px 0px 8px 113px; display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; flex-shrink: 0; width: 254px; position: relative;}
+ .version-2-1-0 {color: var(--text, #7886a0); text-align: left; font: var(--body-small-regular, 400 12px/135% 'Poppins', sans-serif); position: relative;}
+ .header {background: var(--background-dark-2, #121320); width: 1366px; height: 80px; position: absolute; left: calc(50% - 683px);top: 0px;}
+ .frame-11 {display: flex; flex-direction: row; gap: 40px; align-items: center; justify-content: flex-end; position: absolute; right: 113px;top: 24px;}
+ .frame-48098242 {display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: center; flex-shrink: 0; position: relative;}
+ .frame-48098100 {background: var(--background-dark-3, #242636); border-radius: 57px; padding: 6px 12px 6px 5px; display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .bnb-native-cryptocurrency-for-the-binance-smart-chain-2 {flex-shrink: 0; width: 24px; height: 24px; position: relative;}
+ .bnb-native-cryptocurrency-for-the-binance-smart-chain-1 {width: 24px; height: 24px; position: absolute; left: 0px;top: 0px;}
+ .iconly-light-arrow-up-2 {flex-shrink: 0; width: 16px; height: 16px; position: relative;}
+ .iconly-light-arrow-up-22 {width: 16px; height: 16px; position: absolute; left: 0px;top: 0px;}
+ .arrow-up-2 {position: absolute; left: 12.67px;top: 10.33px; transform: translate(-10.08px, -5.42px); overflow: visible;}
+ .frame-48098101 {background: #242636; border-radius: 47px; padding: 8px 8px 8px 8px; display: flex; flex-direction: row; gap: 28px; align-items: center; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .frame-48097798 {display: flex; flex-direction: row; gap: 6px; align-items: center; justify-content: flex-start; flex-shrink: 0; position: relative;}
+ .frame-48098241 {background: #3651df; border-radius: 29px; flex-shrink: 0; width: 24px; height: 24px; position: relative; overflow: hidden;}
+ .rectangle-1556 {background: #4ae0f4; width: 32.78px; height: 20.18px; position: absolute; left: 22.65px;top: -8.66px; transform-origin: 0 0; transform: rotate(45deg) scale(1, 1);}
+ .rectangle-1557 {background: #f44aa6; width: 32.78px; height: 20.18px; position: absolute; left: -20.4px;top: 19.79px; transform-origin: 0 0; transform: rotate(-8.742deg) scale(1, 1);}
+ ._0-xb-2-d-9-f-6 {color: var(--text, #7886a0); text-align: left; font: var(--body-medium-medium, 500 14px/20px 'Poppins', sans-serif); position: relative;}
+ .iconly-light-arrow-up-23 {flex-shrink: 0; width: 16px; height: 16px; position: relative; transform-origin: 0 0; transform: rotate(0deg) scale(1, -1);}
+ .arrow-up-22 {position: absolute; left: 12.67px;top: 10.33px; transform: translate(-10.08px, -0.75px); overflow: visible;}
+ .rectangle-5 {width: 1366px; height: 64px; position: absolute; left: 0px;top: 0px;}
+ .logo-hamsterbox {width: 180px; height: 27.77px; position: absolute; left: 113px;top: 26px; overflow: hidden;}
+ .layer-2 {position: absolute; inset: 0;}
+ .layer-1 {position: absolute; left: 0px;top: 0px; overflow: visible;}
