@@ -178,3 +178,328 @@
  .logo-hamsterbox {width: 180px; height: 27.77px; position: absolute; left: 113px;top: 26px; overflow: hidden;}
  .layer-2 {position: absolute; inset: 0;}
  .layer-1 {position: absolute; left: 0px;top: 0px; overflow: visible;}
+
+      .my-pockets-mini,
+.my-pockets-mini * {
+        box-sizing: border-box;
+      }
+      .my-pockets-mini {
+        border-radius: 12px;
+        border-style: solid;
+        border-color: var(--greyscale-black-80, #353c4b);
+        border-width: 1px;
+        padding: 16px 16px 16px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        align-items: flex-end;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex-shrink: 0;
+        position: relative;
+        width: 775px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .frame-48098175 {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .frame-48097709 {
+        background: var(--greyscale-black-10, #f0f3fa);
+        border-radius: 26.54px;
+        padding: 0px 6.15px 0px 6.15px;
+        display: flex;
+        flex-direction: row;
+        gap: 0px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        position: relative;
+      }
+      .nft-uk-r-4-u-7-w-kxy-9-q-la-x-2-t-gvd-9-o-zs-wo-mo-4-jq-s-jqd-mb-7-nk-1 {
+        border-radius: 18.46px;
+        flex-shrink: 0;
+        width: 36.92px;
+        height: 36.92px;
+        position: relative;
+      }
+      .frame-48098168 {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .sol-btc {
+        color: #ffffff;
+        text-align: left;
+        font: var(--body-medium-medium, 500 14px/20px "Poppins", sans-serif);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      ._146-423 {
+        color: var(--text, #7886a0);
+        text-align: left;
+        font: var(--body-small-regular, 400 12px/135% "Poppins", sans-serif);
+        position: relative;
+        width: 62px;
+      }
+      .button3 {
+        padding: 12px 50px;
+        cursor: pointer;
+      }
+      .button3 .button2 {
+        margin: 0 auto;
+      }
+      .btn.btn-primary {
+        background-color: transparent !important;
+        border: none !important;
+      }
+      .token-select {
+        flex: 1;
+        padding: 0 1em;
+        color: #fff;
+        background-color: var(--darkgray);
+        background-image: none;
+        cursor: pointer;
+        border-radius: 8px;
+        border: 1px solid var(--text, #7886a0);
+        padding: 8px 16px;
+      }
+      .section-title {
+        font-size: 20px;
+        font-family: Poppins;
+        font-weight: 500;
+        line-height: 116%;
+        color: #7886a0;
+      }
+      .dca-pair,
+      .dca-pair * {
+        box-sizing: border-box;
+      }
+      .dca-pair {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 967px;
+        position: relative;
+      }
+      .dca-pair2 {
+        color: var(--text, #7886a0);
+        text-align: left;
+        font: var(--heading-h-1, 500 20px/116% "Poppins", sans-serif);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .frame-48098210 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-end;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .frame-48097868 {
+        background: var(--background-dark-2, #121320);
+        border-radius: 12px;
+        padding: 48px 48px 48px 48px;
+        display: flex;
+        flex-direction: row;
+        gap: 64px;
+        align-items: center;
+        justify-content: center;
+        align-self: stretch;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .frame-48098208 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        width: 150px;
+        position: relative;
+      }
+      .frame-48097854 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .bnb-bnb-logo-1 {
+        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+        position: relative;
+        overflow: hidden;
+      }
+      .group {
+        position: absolute;
+        left: -0.01px;
+        top: 0.01px;
+        overflow: visible;
+      }
+      .frame-48098207 {
+        border-radius: 8px;
+        border-style: solid;
+        border-color: var(--text, #7886a0);
+        border-width: 1px;
+        padding: 8px 16px 8px 16px;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .frame-48097853 {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        align-items: flex-start;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .bnb {
+        color: var(--others-white, #ffffff);
+        text-align: left;
+        font: var(--body-large-medium, 500 16px/125% "Poppins", sans-serif);
+        position: relative;
+      }
+      .balance-319-23-bnb {
+        color: var(--text, #7886a0);
+        text-align: center;
+        font: var(--body-small-light, 300 12px/135% "Poppins", sans-serif);
+        position: relative;
+        align-self: stretch;
+      }
+      .frame-48097866 {
+        flex-shrink: 0;
+        position: relative;
+        transform: translate(0px, 0px);
+        overflow: visible;
+      }
+      .frame-48098209 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        width: 150px;
+        position: relative;
+      }
+      .frame-480978682 {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .solana-sol {
+        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+        position: relative;
+      }
+      .solana-sol2 {
+        position: absolute;
+        inset: 0;
+      }
+      .solana-sol3 {
+        background: #000000;
+        border-radius: 50%;
+        width: 64px;
+        height: 64px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+      }
+      .solana-sol4 {
+        position: absolute;
+        left: 13.86px;
+        top: 17.6px;
+        overflow: visible;
+      }
+      .sol {
+        color: var(--others-white, #ffffff);
+        text-align: left;
+        font: var(--body-large-medium, 500 16px/125% "Poppins", sans-serif);
+        position: relative;
+      }
+      .balance-25-5 {
+        color: var(--text, #7886a0);
+        text-align: center;
+        font: var(--body-small-light, 300 12px/135% "Poppins", sans-serif);
+        position: relative;
+        align-self: stretch;
+      }
+      .frame-38649 {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+        justify-content: flex-end;
+        align-self: stretch;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .provider {
+        color: var(--text, #7886a0);
+        text-align: left;
+        font: var(--body-small-light, 300 12px/135% "Poppins", sans-serif);
+        position: relative;
+      }
+      .frame-48097959 {
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .nft-uk-r-4-u-7-w-kxy-9-q-la-x-2-t-gvd-9-o-zs-wo-mo-4-jq-s-jqd-mb-7-nk-1 {
+        border-radius: 16px;
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        position: relative;
+      }
+      .raydium {
+        color: var(--blackand-white-white, #ffffff);
+        text-align: right;
+        font: var(--body-medium-medium, 500 14px/20px "Poppins", sans-serif);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
