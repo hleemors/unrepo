@@ -503,150 +503,201 @@
         align-items: center;
         justify-content: flex-end;
       }
+
+
 .frame,
 .frame * {
-  box-sizing: border-box;
-}
-.frame {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  position: relative;
-}
-.amount {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-.frame-48097891 {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-.amount-each-batch {
-  text-align: left;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.amount-each-batch-span {
-  color: var(--text, #7886a0);
-  font: var(--heading-h-1, 500 20px/116% "Poppins", sans-serif);
-}
-.amount-each-batch-span2 {
-  color: var(--primary-white, #ffffff);
-  font: var(--body-large-medium, 500 16px/125% "Poppins", sans-serif);
-}
-.amount-each-batch-span3 {
-  color: var(--alert-red, #f44949);
-  font: var(--body-large-medium, 500 16px/125% "Poppins", sans-serif);
-}
-.input-field-52-with-icon {
-  background: var(--background-dark-2, #121320);
-  border-radius: 8px;
-  padding: 16px 16px 16px 16px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-  width: 333px;
-  height: 44px;
-  position: relative;
-}
-.frame-48097890 {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-}
-.binance-coin-bnb {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-.binance-coin-bnb2 {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  overflow: visible;
-}
-.from-0-1-sol {
-  color: var(--neutral-dark-50, #7886a0);
-  text-align: left;
-  font: var(--body-small-light, 300 12px/135% "Poppins", sans-serif);
-  position: relative;
-  width: 175px;
-}
-.frame-38748 {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-.sol {
-  color: var(--blackand-white-white, #ffffff);
-  text-align: left;
-  font: var(--body-medium-semi-bold, 600 14px/142% "Poppins", sans-serif);
-  position: relative;
-}
-.frame-625057 {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.available {
-  color: var(--text, #7886a0);
-  text-align: left;
-  font: var(--body-medium-regular, 400 14px/142% "Poppins", sans-serif);
-  position: relative;
-}
-.frame-625056 {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-.binance-coin-bnb10 {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-.binance-coin-bnb11 {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  overflow: visible;
-}
-._2-043-54-bnb {
-  color: var(--neutral-dark-10, #f0f3fa);
-  text-align: left;
-  font: var(--body-medium-regular, 400 14px/142% "Poppins", sans-serif);
-  position: relative;
-}
+        box-sizing: border-box;
+      }
+      .frame {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+      }
+      .amount {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .frame-48097891 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .amount-each-batch {
+        text-align: left;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .amount-each-batch-span {
+        color: var(--text, #7886a0);
+        font: var(--heading-h-1, 500 20px/116% "Poppins", sans-serif);
+      }
+      .amount-each-batch-span2 {
+        color: var(--primary-white, #ffffff);
+        font: var(--body-large-medium, 500 16px/125% "Poppins", sans-serif);
+      }
+      .amount-each-batch-span3 {
+        color: var(--alert-red, #f44949);
+        font: var(--body-large-medium, 500 16px/125% "Poppins", sans-serif);
+      }
+      .input-field-52-with-icon {
+        background: var(--background-dark-2, #121320);
+        border-radius: 8px;
+        padding: 16px 16px 16px 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+        width: 333px;
+        height: 44px;
+        position: relative;
+      }
+      .frame-48097890 {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .binance-coin-bnb {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        position: relative;
+      }
+      .binance-coin-bnb2 {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        overflow: visible;
+      }
+      .from-0-1-sol {
+        color: var(--neutral-dark-50, #7886a0);
+        text-align: left;
+        font: var(--body-small-light, 300 12px/135% "Poppins", sans-serif);
+        position: relative;
+        width: 175px;
+        background: var(--background-dark-2, #121320);
+        border: none;
+        outline: none;
+        margin: 0;
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+      }
+      .frame-38748 {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .sol {
+        color: var(--blackand-white-white, #ffffff);
+        text-align: left;
+        font: var(--body-medium-semi-bold, 600 14px/142% "Poppins", sans-serif);
+        position: relative;
+      }
+      .frame-625057 {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        align-self: stretch;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .available {
+        color: var(--text, #7886a0);
+        text-align: left;
+        font: var(--body-medium-regular, 400 14px/142% "Poppins", sans-serif);
+        position: relative;
+      }
+      .frame-625056 {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .binance-coin-bnb10 {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        position: relative;
+      }
+      .binance-coin-bnb11 {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        overflow: visible;
+      }
+      ._2-043-54-bnb {
+        color: var(--neutral-dark-10, #f0f3fa);
+        text-align: left;
+        font: var(--body-medium-regular, 400 14px/142% "Poppins", sans-serif);
+        position: relative;
+      }
+      .frame-48098260,
+      .frame-48098260 * {
+        box-sizing: border-box;
+      }
+      .frame-48098260 {
+        background: var(--main-main, #735cf7);
+        border-radius: 31px;
+        padding: 12px 59px 12px 59px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+      }
+      .deposit {
+        color: var(--blackand-white-white, #ffffff);
+        text-align: center;
+        font: var(--body-medium-semi-bold, 600 14px/142% "Poppins", sans-serif);
+        position: relative;
+      }
+      Copy .frame-48098259,
+      .frame-48098259 * {
+        box-sizing: border-box;
+      }
+      .frame-48098259 {
+        border-radius: 31px;
+        border-style: solid;
+        border-color: var(--main-main, #735cf7);
+        border-width: 1px;
+        padding: 12px 59px 12px 59px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 161px;
+        position: relative;
+      }
+      .deposit {
+        text-align: center;
+        font: var(--body-medium-semi-bold, 600 14px/142% "Poppins", sans-serif);
+        position: relative;
+      }Ï
