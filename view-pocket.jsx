@@ -209,7 +209,7 @@ const handleDepositPocket = () => {
     `0x${(
       parseFloat(state.pocketDepositedAmount) *
       parseFloat(Math.pow(10, state.baseToken.decimals))
-    ).toString(16)}`
+    ).toFixed(0).toString(16)}`
   );
 
   contract
