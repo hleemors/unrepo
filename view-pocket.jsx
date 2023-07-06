@@ -14,6 +14,9 @@ State.init({
   // Get base token data.
   baseToken: null,
 
+  // Define frequency option to create pocket, default is 1 hour.
+  frequency: "3600",
+
   abiJson: null,
 
   selectedTokenAddress: "",
@@ -55,6 +58,42 @@ const CONTRACT_DATA = {
     },
   ],
 };
+
+// Frequency options.
+const TIME_CONDITIONS = [
+  {
+    label: "Hourly",
+    value: { hours: 1 },
+  },
+  {
+    label: "Daily",
+    value: { days: 1 },
+  },
+  {
+    label: "Weekly",
+    value: { weeks: 1 },
+  },
+  {
+    label: "Every 2 Weeks",
+    value: { weeks: 2 },
+  },
+  {
+    label: "Monthly",
+    value: { months: 1 },
+  },
+  {
+    label: "Every 3 Months",
+    value: { months: 3 },
+  },
+  {
+    label: "Every 6 Months",
+    value: { months: 6 },
+  },
+  {
+    label: "Yearly",
+    value: { years: 1 },
+  },
+];
 
 asyncFetch(
   "https://raw.githubusercontent.com/CaviesLabs/hamsterpocket-assets/main/pocketchef.json"
@@ -123,10 +162,29 @@ const handleSyncWallet = () => {
 };
 
 const handleDepositPocket = () => {
-  if (contract === undefined) return;
+  if (contract === undefined || state.pocketDepositedAmount === undefined)
+    return;
   contract.depositEther(state.pocket._id, {
-    value: 0.001 * Math.pow(10, state.baseToken.decimals),
+    value: state.pocketDepositedAmount * Math.pow(10, state.baseToken.decimals),
   });
+};
+
+const convertDurationsTimeToHours = (duration) => {
+  /** @dev Initilize duration result. */
+  const swapDuration = (val) => val.toString();
+
+  /** @dev Condition for each  */
+  if (duration.hours) {
+    return swapDuration(duration.hours * 3600);
+  } else if (duration.days) {
+    return swapDuration(duration.days * 24 * 3600);
+  } else if (duration.weeks) {
+    return swapDuration(duration.weeks * 7 * 24 * 3600);
+  } else if (duration.months) {
+    return swapDuration(duration.months * 30 * 24 * 3600);
+  } else if (duration.years) {
+    return swapDuration(duration.years * 365 * 24 * 3600);
+  }
 };
 
 const handleCreatePocket = () => {
@@ -150,15 +208,8 @@ const handleCreatePocket = () => {
       batchVolume: ethers.BigNumber.from(
         `0x${(state.depositAmount * Math.pow(10, 18)).toString(16)}`
       ),
-      stopConditions: [
-        {
-          operator: "0",
-          value: parseInt(
-            (new Date().getTime() / 1000 + 60000).toString()
-          ).toString(),
-        },
-      ],
-      frequency: "3600",
+      stopConditions: [],
+      frequency: state.frequency,
       openingPositionCondition: {
         value0: "0",
         value1: "0",
@@ -318,7 +369,6 @@ if (!state.theme) {
 
 console.log(ethers);
 const Theme = state.theme;
-
 const pocketListScreen = () => {
   return (
     <>
@@ -430,7 +480,6 @@ const createPocketScreen = () => {
                   )}
                 </div>
               </div>
-
               <div class="frame">
                 <select
                   class="token-select"
@@ -586,7 +635,6 @@ const createPocketScreen = () => {
 
           <div class="frame-625057">
             <div class="available">Available:</div>
-
             <div class="frame-625056">
               <div class="binance-coin-bnb10">
                 <svg
@@ -615,6 +663,49 @@ const createPocketScreen = () => {
               </div>
 
               <div class="_2-043-54-bnb">{state.balance} BNB</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{ display: "flex" }}>
+        <div class="frame" style={{ float: "left", width: "50%" }}>
+          <div class="amount">
+            <div class="frame-48097891">
+              <div class="amount-each-batch">
+                <span>
+                  <span class="amount-each-batch-span">Frequency</span>
+                  <span class="amount-each-batch-span2"> </span>
+                </span>
+              </div>
+              <div>
+                <div class="frame">
+                  <select
+                    class="token-select"
+                    onChange={(e) => {
+                      const option = TIME_CONDITIONS.find(
+                        (item) => item.label === e.target.value
+                      );
+                      const proccessFrequency = convertDurationsTimeToHours(
+                        option.value
+                      );
+                      State.update({
+                        frequency: proccessFrequency,
+                      });
+                    }}
+                  >
+                    {TIME_CONDITIONS.map((item, index) => {
+                      return (
+                        <option
+                          value={item.label}
+                          key={`frequency-item${index}`}
+                        >
+                          {item.label}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -848,9 +939,64 @@ const pocketDetailScreen = () => {
                 </div>
               </div>
               {state.pocket && state.pocket.status === ACTIVE_STATUS && (
-                <div class="button3" onClick={() => handleDepositPocket()}>
-                  <div class="button2">Deposit Now</div>
-                </div>
+                <>
+                  <div
+                    class="input-field-52-with-icon"
+                    style={{ background: "#22232f !important" }}
+                  >
+                    <div class="frame-48097890">
+                      <div class="binance-coin-bnb">
+                        <svg
+                          class="binance-coin-bnb2"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M23.641 14.9029C22.0381 21.3315 15.5262 25.2438 9.09606 23.6407C2.66863 22.0381 -1.24415 15.5265 0.359423 9.09837C1.96159 2.66903 8.47349 -1.24361 14.9016 0.359081C21.3313 1.96177 25.2438 8.47405 23.6408 14.903L23.6409 14.9029H23.641Z"
+                            fill="#F3BA2F"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M12.0079 7.616L8.90024 10.7233L8.9003 10.7232L7.09216 8.9152L12.0079 4L16.9253 8.91667L15.1171 10.7247L12.0079 7.616ZM5.81449 10.1917L4.00623 12L5.81437 13.8077L7.62263 11.9996L5.81449 10.1917ZM8.89889 13.2769L12.0066 16.384L15.1157 13.2754L16.9248 15.0824L16.9239 15.0834L12.0066 20L7.09082 15.0848L7.08826 15.0822L8.89889 13.2769ZM18.2012 10.1927L16.3929 12.0008L18.2011 13.8087L20.0094 12.0007L18.2012 10.1927Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M13.8338 11.9992H13.8346L11.9999 10.1646L10.6437 11.5201V11.5201L10.4879 11.676L10.1666 11.9973L10.1641 11.9998L10.1666 12.0024L11.9999 13.8357L13.8347 12.0011L13.8356 12.0001L13.8339 11.9992"
+                            fill="white"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* <div class="from-0-1-sol">From 0.1 BNB</div> */}
+                      <input
+                        type="number"
+                        class="from-0-1-sol"
+                        placeholder="Amout BNB to deposit"
+                        style={{ background: "#22232f !important" }}
+                        onChange={(e) =>
+                          State.update({
+                            pocketDepositedAmount: parseFloat(e.target.value),
+                          })
+                        }
+                      />
+                    </div>
+
+                    <div class="frame-38748">
+                      <div class="sol">BNB</div>
+                    </div>
+                  </div>
+                  <div
+                    class="button3"
+                    onClick={() => handleDepositPocket()}
+                    style={{ marginTop: "10px" }}
+                  >
+                    <div class="button2">Deposit Now</div>
+                  </div>
+                </>
               )}
             </div>
           </div>
@@ -887,7 +1033,6 @@ const pocketDetailScreen = () => {
               </div>
             </div>
           </div>
-
           <div class="status-desk">
             <div class="status">Status</div>
             <div class="frame-48098267">
