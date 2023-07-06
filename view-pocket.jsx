@@ -642,7 +642,7 @@ const createPocketScreen = () => {
               <div class="amount-each-batch">
                 <span>
                   <span class="amount-each-batch-span">
-                    💰 Hourly buy amount
+                    💰 Buy amount
                   </span>
                   <span class="amount-each-batch-span2"> </span>
                   <span class="amount-each-batch-span3">*</span>
