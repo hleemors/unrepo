@@ -813,9 +813,8 @@ const createPocketScreen = () => {
                 <Typeahead
                   defaultSelected={[
                     {
-                      id: state.selectedTokenAddress,
-                      label:
-                        state.whiteLists[state.selectedTokenAddress].symbol,
+                      id: TIME_CONDITIONS[0].label,
+                      label: TIME_CONDITIONS[0].label
                     },
                   ]}
                   filterBy={() => true}
