@@ -50,43 +50,51 @@ const CONTRACT_DATA = {
   ], // Set an array of whitelisted routers with their addresses, AMM tags, names, and DEX URLs
 };
 
+console.log(state.frequency);
+
 // Frequency options.
 const TIME_CONDITIONS = [
   {
     label: "Hourly",
     value: { hours: 1 },
+    secondValue: 60,
   },
   {
     label: "Daily",
     value: { days: 1 },
+    secondValue: 60 * 24,
   },
   {
     label: "Weekly",
     value: { weeks: 1 },
+    secondValue: 60 * 24 * 7,
   },
   {
     label: "Every 2 Weeks",
     value: { weeks: 2 },
+    secondValue: 60 * 24 * 7 * 2,
   },
   {
     label: "Monthly",
     value: { months: 1 },
+    secondValue: 60 * 24 * 30,
   },
   {
     label: "Every 3 Months",
     value: { months: 3 },
+    secondValue: 60 * 24 * 30 * 3,
   },
   {
     label: "Every 6 Months",
     value: { months: 6 },
+    secondValue: 60 * 24 * 7 * 30 * 6,
   },
   {
     label: "Yearly",
     value: { years: 1 },
+    secondValue: 60 * 24 * 365,
   },
 ];
-
-console.log(state.frequency);
 
 // Fetch the JSON file from the given URL and update the 'abiJson' state property
 if (!state.abiJson) {
@@ -216,7 +224,7 @@ const handleDepositPocket = () => {
     }); // Deposit the desired amount of Ether into the specified pocket
 };
 
-const convertDurationsTimeToHours = (duration) => {
+const convertDurationsTime = (duration) => {
   /** @dev Initilize duration result. */
   const swapDuration = (val) => val.toString();
 
@@ -596,7 +604,7 @@ const createPocketScreen = () => {
                 </div>
               </div>
 
-              <div class="frame">
+              <div class="frame" style={{}}>
                 {state.whiteLists &&
                   Object.keys(state.whiteLists).length > 0 && (
                     <Typeahead
@@ -641,9 +649,7 @@ const createPocketScreen = () => {
             <div class="frame-48097891">
               <div class="amount-each-batch">
                 <span>
-                  <span class="amount-each-batch-span">
-                    💰 Buy amount
-                  </span>
+                  <span class="amount-each-batch-span">💰 Buy amount</span>
                   <span class="amount-each-batch-span2"> </span>
                   <span class="amount-each-batch-span3">*</span>
                 </span>
@@ -803,14 +809,14 @@ const createPocketScreen = () => {
               </span>
             </div>
             <div>
-              <div class="frame">
+              <div class="frame" style={{ marginBottom: "32px" }}>
                 <select
                   class="token-select"
                   onChange={(e) => {
                     const option = TIME_CONDITIONS.find(
                       (item) => item.label === e.target.value
                     );
-                    const proccessFrequency = convertDurationsTimeToHours(
+                    const proccessFrequency = convertDurationsTime(
                       option.value
                     );
                     State.update({
@@ -820,10 +826,7 @@ const createPocketScreen = () => {
                 >
                   {TIME_CONDITIONS.map((item, index) => {
                     return (
-                      <option
-                        value={item.label}
-                        key={`frequency-item${index}`}
-                      >
+                      <option value={item.label} key={`frequency-item${index}`}>
                         {item.label}
                       </option>
                     );
@@ -925,7 +928,8 @@ const pocketDetailScreen = () => {
                 <div class="strategy2">Frequency</div>
 
                 <div class="frame-48097840">
-                  <div class="frame-48098084">Hourly</div>
+                  {console.log(state.pocket.frequency.seconds, TIME_CONDITIONS)}
+                  <div class="frame-48098084">{TIME_CONDITIONS.find((item) => item.secondValue*60 === state.pocket.frequency.seconds).label || "⏰"}</div>
                 </div>
               </div>
 
