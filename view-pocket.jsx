@@ -87,7 +87,7 @@ const TIME_CONDITIONS = [
   {
     label: "Every 6 Months",
     value: { months: 6 },
-    secondValue: 60 * 24 * 7 * 30 * 6,
+    secondValue: 60 * 24 * 7 * 6,
   },
   {
     label: "Yearly",
