@@ -206,10 +206,12 @@ const handleDepositPocket = () => {
   if (contract === undefined) return; // Return if the 'contract' variable is undefined
 
   const desiredAmount = ethers.BigNumber.from(
-    `0x${(
-      parseFloat(state.pocketDepositedAmount) *
-      parseFloat(Math.pow(10, state.baseToken.decimals))
-    ).toFixed(0).toString(16)}`
+    `0x${parseFloat(
+      (
+        parseFloat(state.pocketDepositedAmount) *
+        parseFloat(Math.pow(10, state.baseToken.decimals))
+      ).toFixed(0)
+    ).toString(16)}`
   );
 
   contract
@@ -261,7 +263,9 @@ const handleCreatePocket = () => {
         ((new Date().getTime() + 30000) / 1000).toString()
       ).toString(),
       batchVolume: ethers.BigNumber.from(
-        `0x${(state.batchAmount * Math.pow(10, 18).toFixed(0)).toString(16)}`
+        `0x${parseFloat(
+          (state.batchAmount * Math.pow(10, 18)).toFixed(0)
+        ).toString(16)}`
       ),
       stopConditions: [],
       frequency: state.frequency,
@@ -284,13 +288,16 @@ const handleCreatePocket = () => {
       contract
         .createPocketAndDepositEther(createdParams, {
           value: ethers.BigNumber.from(
-            `0x${(state.depositAmount * Math.pow(10, 18).toFixed(0)).toString(16)}`
+            `0x${parseFloat(
+              (state.depositAmount * Math.pow(10, 18)).toFixed(0)
+            ).toString(16)}`
           ),
         })
         .then((tx) => {
           console.log("tx hash", tx);
           return tx.wait(CONFIRMATION_AWAIT).then(() => {
             handleSyncWallet(() => {
+              State.update({ frequency: "3600" });
               State.update({ currentScreen: 0 });
             });
           });
@@ -605,32 +612,31 @@ const createPocketScreen = () => {
               </div>
 
               <div class="frame" style={{}}>
-                {state.whiteLists &&
-                  Object.keys(state.whiteLists).length > 0 && (
-                    <Typeahead
-                      defaultSelected={[
-                        {
-                          id: state.selectedTokenAddress,
-                          label:
-                            state.whiteLists[state.selectedTokenAddress].symbol,
-                        },
-                      ]}
-                      filterBy={() => true}
-                      options={Object.keys(state.whiteLists)
-                        .filter((w) => state.whiteLists[w].symbol !== "WBNB")
-                        .map((address) => {
-                          return {
-                            id: address,
-                            label: state.whiteLists[address].symbol,
-                          };
-                        })}
-                      onChange={(value) => {
-                        if (value[0].id) {
-                          State.update({ selectedTokenAddress: value[0].id });
-                        }
-                      }}
-                    />
-                  )}
+                {state.whiteLists && Object.keys(state.whiteLists).length > 0 && (
+                  <Typeahead
+                    defaultSelected={[
+                      {
+                        id: state.selectedTokenAddress,
+                        label:
+                          state.whiteLists[state.selectedTokenAddress].symbol,
+                      },
+                    ]}
+                    filterBy={() => true}
+                    options={Object.keys(state.whiteLists)
+                      .filter((w) => state.whiteLists[w].symbol !== "WBNB")
+                      .map((address) => {
+                        return {
+                          id: address,
+                          label: state.whiteLists[address].symbol,
+                        };
+                      })}
+                    onChange={(value) => {
+                      if (value[0].id) {
+                        State.update({ selectedTokenAddress: value[0].id });
+                      }
+                    }}
+                  />
+                )}
               </div>
             </div>
             {/* <div class="balance-25-5">Balance: 25.5</div> */}
@@ -810,23 +816,11 @@ const createPocketScreen = () => {
             </div>
             <div>
               <div class="frame" style={{ marginBottom: "32px" }}>
-                <Typeahead
-                  defaultSelected={[
-                    {
-                      id: TIME_CONDITIONS[0].label,
-                      label: TIME_CONDITIONS[0].label
-                    },
-                  ]}
-                  filterBy={() => true}
-                  options={TIME_CONDITIONS.map((item) => {
-                    return {
-                      id: item.label,
-                      label: item.label,
-                    };
-                  })}
-                  onChange={(value) => {
+                <select
+                  class="token-select"
+                  onChange={(e) => {
                     const option = TIME_CONDITIONS.find(
-                      (item) => item.label === value[0].id
+                      (item) => item.label === e.target.value
                     );
                     const proccessFrequency = convertDurationsTime(
                       option.value
@@ -835,7 +829,19 @@ const createPocketScreen = () => {
                       frequency: proccessFrequency,
                     });
                   }}
-                />
+                >
+                  {TIME_CONDITIONS.map((item, index) => {
+                    return (
+                      <option
+                        style={{ color: "black" }}
+                        value={item.label}
+                        key={`frequency-item${index}`}
+                      >
+                        {item.label}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </div>
@@ -844,7 +850,10 @@ const createPocketScreen = () => {
       <div class="button-group" style={{ display: "flex" }}>
         <div
           class="frame-48098259"
-          onClick={() => State.update({ currentScreen: 0 })}
+          onClick={() => {
+            State.update({ currentScreen: 0 });
+            State.update({ frequency: "3600" });
+          }}
           style={{ float: "left ", cursor: "pointer" }}
         >
           <div class="deposit">Back</div>
@@ -932,7 +941,6 @@ const pocketDetailScreen = () => {
                 <div class="strategy2">Frequency</div>
 
                 <div class="frame-48097840">
-                  {console.log(state.pocket.frequency.seconds, TIME_CONDITIONS)}
                   <div class="frame-48098084">
                     {TIME_CONDITIONS.find(
                       (item) =>
