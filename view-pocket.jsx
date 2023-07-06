@@ -1,46 +1,37 @@
 State.init({
-  // Update true after update.
-  loaded: false,
-  // Define current screen.
-  currentScreen: 0,
-  // Tokens which were whitelised in hamster server.
-  whiteLists: {},
-  // Define list pocket of wallet.
-  pocketList: [],
-  // Define pocket data which was fetched after user retrive pocket.
-  pocket: null,
-  // Get target token data.
-  targetToken: null,
-  // Get base token data.
-  baseToken: null,
-
-  // Define frequency option to create pocket, default is 1 hour.
-  frequency: "3600",
-
-  abiJson: null,
-
-  selectedTokenAddress: "",
-  batchAmount: 0,
-  depositAmount: 0,
-
-  balance: 0,
+  loaded: false, // Initialize the 'loaded' state property to false
+  currentScreen: 0, // Initialize the 'currentScreen' state property to 0
+  whiteLists: {}, // Initialize the 'whiteLists' state property as an empty object
+  pocketList: [], // Initialize the 'pocketList' state property as an empty array
+  pocket: null, // Initialize the 'pocket' state property to null
+  targetToken: null, // Initialize the 'targetToken' state property to null
+  baseToken: null, // Initialize the 'baseToken' state property to null
+  abiJson: null, // Initialize the 'abiJson' state property to null
+  selectedTokenAddress: "", // Initialize the 'selectedTokenAddress' state property as an empty string
+  batchAmount: 0, // Initialize the 'batchAmount' state property to 0
+  depositAmount: 0, // Initialize the 'depositAmount' state property to 0
+  balance: 0, // Initialize the 'balance' state property to 0
+  sender: null, // initialize sender as null
+  chainId: null, // initialize chain id as null
+  frequency: "3600", // Define frequency option to create pocket, default is 1 hour.
 });
 
 // HOST NAME API.
+const CONFIRMATION_AWAIT = 1;
 const ACTIVE_STATUS = "POOL_STATUS::ACTIVE";
-var contract;
-const API = "https://dev-pocket-api.hamsterbox.xyz/api";
+var contract; // Declare a variable 'contract' (presumably for holding a contract instance)
+const API = "https://dev-pocket-api.hamsterbox.xyz/api"; // Set the API endpoint URL
 const CONTRACT_DATA = {
-  wagmiKey: "bsc",
-  chainName: "BNB",
+  wagmiKey: "bsc", // Set a property 'wagmiKey' with value "bsc"
+  chainName: "BNB", // Set a property 'chainName' with value "BNB"
   chainLogo:
-    "https://s3.coinmarketcap.com/static/img/portraits/62876e92bedeb632050eb4ae.png",
-  rpcUrl: "https://bsc-rpc.hamsterbox.xyz",
-  chainId: 56,
-  programAddress: "0xd74Ad94208935a47b1Bd289d28d45Bce6369E064",
-  vaultAddress: "0x4bcD48D0Af9b48716EDb30BFF560d08036439871",
-  registryAddress: "0xb9599963729Acf22a18629355dA23e0bA4fBa611",
-  explorerUrl: "https://bscscan.com/",
+    "https://s3.coinmarketcap.com/static/img/portraits/62876e92bedeb632050eb4ae.png", // Set a property 'chainLogo' with an image URL
+  rpcUrl: "https://bsc-rpc.hamsterbox.xyz", // Set the RPC URL
+  chainId: 56, // Set the chain ID to 56
+  programAddress: "0xd74Ad94208935a47b1Bd289d28d45Bce6369E064", // Set the program address
+  vaultAddress: "0x4bcD48D0Af9b48716EDb30BFF560d08036439871", // Set the vault address
+  registryAddress: "0xb9599963729Acf22a18629355dA23e0bA4fBa611", // Set the registry address
+  explorerUrl: "https://bscscan.com/", // Set the explorer URL
   whitelistedRouters: [
     {
       address: "0x5Dc88340E1c5c6366864Ee415d6034cadd1A9897",
@@ -56,7 +47,7 @@ const CONTRACT_DATA = {
       ammName: "Pancake Swap",
       dexUrl: "https://pancakeswap.finance/swap/",
     },
-  ],
+  ], // Set an array of whitelisted routers with their addresses, AMM tags, names, and DEX URLs
 };
 
 // Frequency options.
@@ -95,18 +86,27 @@ const TIME_CONDITIONS = [
   },
 ];
 
-asyncFetch(
-  "https://raw.githubusercontent.com/CaviesLabs/hamsterpocket-assets/main/pocketchef.json"
-).then((result) => {
-  State.update({
-    abiJson: JSON.parse(result.body),
-  });
-});
+console.log(state.frequency);
 
+// Fetch the JSON file from the given URL and update the 'abiJson' state property
+if (!state.abiJson) {
+  asyncFetch(
+    "https://raw.githubusercontent.com/CaviesLabs/hamsterpocket-assets/main/pocketchef.json"
+  ).then((result) => {
+    State.update({
+      abiJson: JSON.parse(result.body), // Parse the JSON response and update the 'abiJson' state property
+    });
+  });
+}
+
+// Function to reload configuration data
 const reloadConfig = () => {
+  // Fetch whitelist data from the API
   asyncFetch(`${API}/whitelist`).then((result) => {
     const tokens = result.body;
     const mapping = {};
+
+    // Create a mapping of tokens with their addresses
     tokens.forEach((token) => {
       if (token.chainId === "bnb") {
         mapping[token.address] = token;
@@ -114,20 +114,28 @@ const reloadConfig = () => {
     });
 
     State.update({
-      whiteLists: mapping,
+      whiteLists: mapping, // Update the 'whiteLists' state property with the token mapping
       selectedTokenAddress:
-        Object.keys(mapping).length > 1 ? Object.keys(mapping)[1] : "",
+        Object.keys(mapping).length > 1 ? Object.keys(mapping)[1] : "", // Set the 'selectedTokenAddress' to the second token address if there are more than one, otherwise set it to an empty string
     });
   });
 };
 
+if (!state.loaded) {
+  State.update({ loaded: true }); // Update the 'loaded' state property to true
+  reloadConfig(); // Call the 'reloadConfig' function to load configuration data
+  loaded += 1; // Increment the 'loaded' variable by 1 (assuming 'loaded' is a global variable)
+}
+
+// Function to handle getting pocket data by ID
 const handleGetPocket = async (id) => {
   try {
+    // Fetch pocket data from the API for the given ID
     asyncFetch(`${API}/pool/${id}/decimals-formatted`).then((result) => {
       State.update({
-        pocket: result.body,
-        targetToken: state.whiteLists[result.body.targetTokenAddress],
-        baseToken: state.whiteLists[result.body.baseTokenAddress],
+        pocket: result.body, // Update the 'pocket' state property with the fetched pocket data
+        targetToken: state.whiteLists[result.body.targetTokenAddress], // Set the 'targetToken' state property to the token from 'whiteLists' based on the target token address
+        baseToken: state.whiteLists[result.body.baseTokenAddress], // Set the 'baseToken' state property to the token from 'whiteLists' based on the base token address
       });
     });
   } catch (err) {
@@ -135,38 +143,77 @@ const handleGetPocket = async (id) => {
   }
 };
 
-const handleGetPockets = (walletAddress) => {
+// Function to handle getting pockets for a wallet address
+const handleGetPockets = (walletAddress, cb) => {
   try {
+    // Fetch pocket data from the API for the given wallet address
     asyncFetch(
-      `${API}/pool/decimals-formatted?limit=20&offset=0&chainId=bnb&ownerAddress=${walletAddress}&statuses=POOL_STATUS%3A%3AACTIVE&statuses=POOL_STATUS%3A%3ACLOSED&sortBy=DATE_START_DESC`
+      `${API}/pool/decimals-formatted?limit=9999&offset=0&chainId=bnb&ownerAddress=${walletAddress}&statuses=POOL_STATUS%3A%3AACTIVE&statuses=POOL_STATUS%3A%3ACLOSED&sortBy=DATE_START_DESC`
     ).then((result) => {
       State.update({
-        pocketList: result.body,
+        pocketList: result.body, // Update the 'pocketList' state property with the fetched pocket data
       });
+
+      if (cb) {
+        cb();
+      }
     });
   } catch (err) {
     console.log(err);
   }
 };
 
-const handleSyncWallet = () => {
-  if (!state.sender) return;
+// Function to sync the wallet data
+const handleSyncWallet = (cb) => {
+  if (!state.sender) return; // Return if the 'sender' state property is not defined
   asyncFetch(`${API}/pool/user/evm/${state.sender}/sync?chainId=bnb`, {
     method: "POST",
     headers: {
       "content-type": "text/plain;charset=UTF-8",
     },
   }).then(() => {
-    handleGetPockets();
+    handleGetPockets(state.sender, cb); // Sync the wallet data and then fetch the pockets for the wallet
   });
 };
 
-const handleDepositPocket = () => {
-  if (contract === undefined || state.pocketDepositedAmount === undefined)
-    return;
-  contract.depositEther(state.pocket._id, {
-    value: state.pocketDepositedAmount * Math.pow(10, state.baseToken.decimals),
+// Function to sync a pocket
+const handleSyncPocket = (cb) => {
+  if (!state.pocket) return; // Return if the 'pocket' state property is not defined
+  asyncFetch(`${API}/pool/evm/${state.pocket._id}/sync`, {
+    method: "POST",
+    headers: {
+      "content-type": "text/plain;charset=UTF-8",
+    },
+  }).then(() => {
+    handleGetPocket(state.pocket._id); // Sync the pocket and then fetch the updated pocket data
+
+    if (cb) {
+      cb();
+    }
   });
+};
+
+// Function to handle depositing into a pocket
+const handleDepositPocket = () => {
+  if (contract === undefined) return; // Return if the 'contract' variable is undefined
+
+  const desiredAmount = ethers.BigNumber.from(
+    `0x${(
+      parseFloat(state.pocketDepositedAmount) *
+      parseFloat(Math.pow(10, state.baseToken.decimals))
+    ).toString(16)}`
+  );
+
+  contract
+    .depositEther(state.pocket._id, {
+      value: desiredAmount,
+    })
+    .then((tx) => {
+      console.log("tx hash", tx);
+      return tx.wait(CONFIRMATION_AWAIT).then(() => {
+        handleSyncPocket();
+      });
+    }); // Deposit the desired amount of Ether into the specified pocket
 };
 
 const convertDurationsTimeToHours = (duration) => {
@@ -187,21 +234,21 @@ const convertDurationsTimeToHours = (duration) => {
   }
 };
 
+// Function to handle creating a new pocket
 const handleCreatePocket = () => {
   asyncFetch(`${API}/pool/bnb/${state.sender}`, {
     method: "POST",
     headers: {
       "content-type": "text/plain;charset=UTF-8",
     },
-  }).then((result) => {
-    console.log(result.body);
+  }).then(async (result) => {
     const createdParams = {
       id: result.body._id,
       owner: state.sender,
       baseTokenAddress: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // Default BNB
-      targetTokenAddress: state.selectedTokenAddress,
+      targetTokenAddress: state.selectedTokenAddress, // Use the selected token address
       ammRouterVersion: "0",
-      ammRouterAddress: CONTRACT_DATA.whitelistedRouters[0].address,
+      ammRouterAddress: CONTRACT_DATA.whitelistedRouters[0].address, // Use the address of the first whitelisted router
       startAt: parseInt(
         ((new Date().getTime() + 30000) / 1000).toString()
       ).toString(),
@@ -226,74 +273,97 @@ const handleCreatePocket = () => {
     };
 
     try {
-      contract.createPocketAndDepositEther(createdParams, {
-        value: ethers.BigNumber.from(
-          `0x${(state.depositAmount * Math.pow(10, 18)).toString(16)}`
-        ),
-      });
-      State.update({ currentScreen: 0 });
+      contract
+        .createPocketAndDepositEther(createdParams, {
+          value: ethers.BigNumber.from(
+            `0x${(state.depositAmount * Math.pow(10, 18)).toString(16)}`
+          ),
+        })
+        .then((tx) => {
+          console.log("tx hash", tx);
+          return tx.wait(CONFIRMATION_AWAIT).then(() => {
+            handleSyncWallet(() => {
+              State.update({ currentScreen: 0 });
+            });
+          });
+        });
     } catch (err) {
       console.error(err);
     }
   });
 };
 
-const handleSyncPocket = () => {
-  if (!state.pocket) return;
-  asyncFetch(`${API}/pool/evm/${state.pocket._id}/sync`, {
-    method: "POST",
-    headers: {
-      "content-type": "text/plain;charset=UTF-8",
-    },
-  }).then(() => {
-    handleGetPocket(state.pocket._id);
-  });
-};
-
+// Function to close a pocket
 const handleClosePocket = () => {
-  if (!state.pocket) return;
+  if (!state.pocket) return; // Return if the 'pocket' state property is not defined
   try {
-    contract.closePocket(state.pocket._id);
+    contract
+      .closePocket(state.pocket._id)
+      .then((tx) => {
+        console.log("txHash", tx);
+        return tx.wait(CONFIRMATION_AWAIT).then(() => {
+          handleSyncPocket();
+        });
+      })
+      .finally(() => {
+        handleSyncPocket();
+      });
   } catch {}
 };
+
+// Function to handle withdrawing from a pocket
 const handleWithdraw = () => {
-  if (!state.pocket) return;
+  if (!state.pocket) return; // Return if the 'pocket' state property is not defined
   try {
     console.log("Withdraw", state.pocket._id);
-    contract.withdraw(state.pocket._id);
+    contract
+      .withdraw(state.pocket._id)
+      .then((tx) => {
+        console.log("txHash", tx);
+        return tx.wait(CONFIRMATION_AWAIT).then(() => {
+          handleSyncPocket(() => {
+            handleGetPockets(state.sender, () => {
+              State.update({ currentScreen: 0 });
+            });
+          });
+        });
+      })
+      .catch(() => {
+        handleGetPockets(state.sender, () => {
+          State.update({ currentScreen: 0 });
+        });
+      });
   } catch {}
 };
 
 // DETECT SENDER
-if (state.sender === undefined) {
-  State.update({
-    sender: ethers.utils.getAddress(Ethers.send("eth_requestAccounts", [])[0]),
-  });
+if (ethers !== undefined && Ethers.send("eth_requestAccounts", [])[0]) {
+  Ethers.provider()
+    .getNetwork()
+    .then((chainIdData) => {
+      if (chainIdData?.chainId) {
+        State.update({
+          chainId: chainIdData.chainId,
+          sender: ethers.utils.getAddress(
+            Ethers.send("eth_requestAccounts", [])[0]
+          ),
+        });
+      }
+    });
 }
-
-// Forbith
-if (!state.sender) return "Please login first";
 
 // Get sender balance.
 if (state.sender) {
   Ethers.provider()
     .getBalance(state.sender)
     .then((balance) => {
-      State.update({ balance: Big(balance).div(Big(10).pow(18)).toFixed(10) });
+      State.update({ balance: Big(balance).div(Big(10).pow(18)).toFixed(10) }); // Get the sender's balance and update the 'balance' state property
     });
 }
 
-console.log("state reload", state);
-if (!state.loaded) {
-  console.log("Fetch config");
-  State.update({ loaded: true });
-  reloadConfig();
-  loaded += 1;
-}
-
-if (state.whiteLists !== {} && state.sender) {
+if (state.whiteLists !== {} && state.sender && state.currentScreen === 0) {
   // Get pocket data when config has been loaded.
-  handleGetPockets(state.sender);
+  handleGetPockets(state.sender); // Fetch the pockets for the sender if the whiteLists and sender are defined
 }
 
 // Setup contract
@@ -302,14 +372,14 @@ if (state.sender && state.abiJson) {
     CONTRACT_DATA.programAddress,
     state.abiJson,
     Ethers.provider().getSigner()
-  );
+  ); // Setup the contract instance with the program address, ABI JSON, and signer
 }
 
 const cssFont = fetch(
   "https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800"
 ).body;
 const css = fetch(
-  "https://raw.githubusercontent.com/hleemors/unrepo/main/style.css"
+  "https://raw.githubusercontent.com/CaviesLabs/hamsterpocket-assets/main/style.css?v=18"
 ).body;
 
 if (!cssFont || !css) return "";
@@ -318,10 +388,11 @@ if (!state.theme) {
   State.update({
     theme: styled.div`
       font-family: "Poppins", sans-serif;
+      color: white;
       ${cssFont}
       ${css}
-      .button-primary-36-px,
-.button-primary-36-px * {
+        .button-primary-36-px,
+        .button-primary-36-px * {
         box-sizing: border-box;
       }
       .button-primary-36-px {
@@ -363,16 +434,39 @@ if (!state.theme) {
         top: 0px;
         overflow: visible;
       }
+      .text-white {
+        color: white !important;
+      }
     `,
   });
 }
 
-console.log(ethers);
 const Theme = state.theme;
+
 const pocketListScreen = () => {
+  if (state.sender === null || state.chainId !== 56) {
+    return (
+      <>
+        <div style={{ textAlign: "center" }}>
+          Please connect to BNB chain wallet 🚀
+        </div>
+      </>
+    );
+  }
+
+  if (state.pocketList.length === 0) {
+    return (
+      <>
+        <div style={{ textAlign: "center" }}>
+          You don't have any strategies, create one 🚀
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      {state.pocketList.map((pocket, index) => {
+      {state.pocketList?.map((pocket, index) => {
         const pocketBaseToken = state.whiteLists[pocket.baseTokenAddress];
         const pocketTargetToken = state.whiteLists[pocket.targetTokenAddress];
         return (
@@ -397,6 +491,27 @@ const pocketListScreen = () => {
                 </div>
                 <div class="_146-423">#{pocket._id}</div>
               </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "end",
+                }}
+              >
+                <div
+                  style={{
+                    textAlign: "right",
+                    color: (pocket?.currentROIValue || "0").includes("-")
+                      ? "red"
+                      : "#26c673",
+                  }}
+                >
+                  💵 {pocket?.currentROIValue} {pocket?.baseTokenInfo[0].symbol}{" "}
+                  ({pocket?.currentROI}
+                  %)
+                </div>
+              </div>
             </div>
           </div>
         );
@@ -408,7 +523,7 @@ const pocketListScreen = () => {
 const createPocketScreen = () => {
   return (
     <div class="dca-pair">
-      <div class="dca-pair2">DCA Pair</div>
+      <div class="dca-pair2">🔄 Select trading pair</div>
       <div class="frame-48098210">
         <div class="frame-48097868">
           <div class="frame-48098208">
@@ -480,26 +595,34 @@ const createPocketScreen = () => {
                   )}
                 </div>
               </div>
+
               <div class="frame">
-                <select
-                  class="token-select"
-                  onChange={(e) => {
-                    State.update({
-                      selectedTokenAddress: e.target.value,
-                    });
-                  }}
-                >
-                  {state.whiteLists !== {} &&
-                    Object.keys(state.whiteLists).map((address, index) => {
-                      if (state.whiteLists[address].symbol === "WBNB")
-                        return null;
-                      return (
-                        <option value={address} key={`token-inde${index}`}>
-                          {state.whiteLists[address].symbol}
-                        </option>
-                      );
-                    })}
-                </select>
+                {state.whiteLists &&
+                  Object.keys(state.whiteLists).length > 0 && (
+                    <Typeahead
+                      defaultSelected={[
+                        {
+                          id: state.selectedTokenAddress,
+                          label:
+                            state.whiteLists[state.selectedTokenAddress].symbol,
+                        },
+                      ]}
+                      filterBy={() => true}
+                      options={Object.keys(state.whiteLists)
+                        .filter((w) => state.whiteLists[w].symbol !== "WBNB")
+                        .map((address) => {
+                          return {
+                            id: address,
+                            label: state.whiteLists[address].symbol,
+                          };
+                        })}
+                      onChange={(value) => {
+                        if (value[0].id) {
+                          State.update({ selectedTokenAddress: value[0].id });
+                        }
+                      }}
+                    />
+                  )}
               </div>
             </div>
             {/* <div class="balance-25-5">Balance: 25.5</div> */}
@@ -508,7 +631,7 @@ const createPocketScreen = () => {
         <div class="frame-38649">
           <div class="provider">Provider</div>
           <div class="frame-48097959">
-            <div class="raydium">Raydium</div>
+            <div class="raydium">Uniswap V3</div>
           </div>
         </div>
       </div>
@@ -518,7 +641,9 @@ const createPocketScreen = () => {
             <div class="frame-48097891">
               <div class="amount-each-batch">
                 <span>
-                  <span class="amount-each-batch-span">Batch amount</span>
+                  <span class="amount-each-batch-span">
+                    💰 Hourly buy amount
+                  </span>
                   <span class="amount-each-batch-span2"> </span>
                   <span class="amount-each-batch-span3">*</span>
                 </span>
@@ -579,7 +704,7 @@ const createPocketScreen = () => {
             <div class="frame-48097891">
               <div class="amount-each-batch">
                 <span>
-                  <span class="amount-each-batch-span">Deposit amount</span>
+                  <span class="amount-each-batch-span">💳 Deposit amount</span>
                   <span class="amount-each-batch-span2"> </span>
                   <span class="amount-each-batch-span3">*</span>
                 </span>
@@ -635,6 +760,7 @@ const createPocketScreen = () => {
 
           <div class="frame-625057">
             <div class="available">Available:</div>
+
             <div class="frame-625056">
               <div class="binance-coin-bnb10">
                 <svg
@@ -667,44 +793,42 @@ const createPocketScreen = () => {
           </div>
         </div>
       </div>
-      <div style={{ display: "flex" }}>
-        <div class="frame" style={{ float: "left", width: "50%" }}>
-          <div class="amount">
-            <div class="frame-48097891">
-              <div class="amount-each-batch">
-                <span>
-                  <span class="amount-each-batch-span">Frequency</span>
-                  <span class="amount-each-batch-span2"> </span>
-                </span>
-              </div>
-              <div>
-                <div class="frame">
-                  <select
-                    class="token-select"
-                    onChange={(e) => {
-                      const option = TIME_CONDITIONS.find(
-                        (item) => item.label === e.target.value
-                      );
-                      const proccessFrequency = convertDurationsTimeToHours(
-                        option.value
-                      );
-                      State.update({
-                        frequency: proccessFrequency,
-                      });
-                    }}
-                  >
-                    {TIME_CONDITIONS.map((item, index) => {
-                      return (
-                        <option
-                          value={item.label}
-                          key={`frequency-item${index}`}
-                        >
-                          {item.label}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
+      <div class="frame">
+        <div class="amount">
+          <div class="frame-48097891">
+            <div class="amount-each-batch">
+              <span>
+                <span class="amount-each-batch-span">⏰ Frequency</span>
+                <span class="amount-each-batch-span2"> </span>
+              </span>
+            </div>
+            <div>
+              <div class="frame">
+                <select
+                  class="token-select"
+                  onChange={(e) => {
+                    const option = TIME_CONDITIONS.find(
+                      (item) => item.label === e.target.value
+                    );
+                    const proccessFrequency = convertDurationsTimeToHours(
+                      option.value
+                    );
+                    State.update({
+                      frequency: proccessFrequency,
+                    });
+                  }}
+                >
+                  {TIME_CONDITIONS.map((item, index) => {
+                    return (
+                      <option
+                        value={item.label}
+                        key={`frequency-item${index}`}
+                      >
+                        {item.label}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </div>
@@ -718,22 +842,22 @@ const createPocketScreen = () => {
         >
           <div class="deposit">Back</div>
         </div>
-        <div
-          class="frame-48098260"
-          style={{
-            float: "left ",
-            marginLeft: "20px",
-            cursor: "pointer",
-          }}
-        >
+
+        {state.balance && state.balance > 0 && (
           <div
-            class="deposit"
-            style={{ cursor: "pointer" }}
             onClick={() => handleCreatePocket()}
+            class="frame-48098260"
+            style={{
+              float: "left ",
+              marginLeft: "20px",
+              cursor: "pointer",
+            }}
           >
-            Create Pocket
+            <div class="deposit" style={{ cursor: "pointer" }}>
+              ✅ Save
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
@@ -760,34 +884,51 @@ const pocketDetailScreen = () => {
           </div>
         </div>
 
-        <svg
-          class="popup-2"
-          width="25"
-          height="24"
-          viewBox="0 0 25 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <a
+          target="_blank"
+          href={`https://app.uniswap.org/#/swap/?inputCurrency=${state.baseToken?.address}&outputCurrency=${state.targetToken?.address}`}
         >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M15.5975 2.53324H21.4502C21.8924 2.53324 22.2502 2.88152 22.2502 3.31191L22.2503 9.00856C22.2503 9.43893 21.8925 9.78727 21.4503 9.78727C21.0081 9.78727 20.6502 9.43895 20.6502 9.00856V5.19714L12.3765 13.2503C12.2291 13.3938 12.0186 13.4757 11.808 13.4757C11.5975 13.4757 11.387 13.3938 11.2396 13.2503C10.9238 12.943 10.9238 12.4511 11.2396 12.1439L19.5133 4.09066H15.5975C15.1553 4.09066 14.7975 3.74233 14.7975 3.31195C14.7975 2.88158 15.1553 2.53324 15.5975 2.53324ZM17.4922 12.0823C17.4922 11.6519 17.8501 11.3036 18.2923 11.3036C18.7345 11.3036 19.0921 11.6724 19.1131 12.1026L19.1133 17.6354C19.1133 20.0533 17.0922 22 14.629 22H6.73424C4.24998 22 2.25 20.0533 2.25 17.6558V9.97148C2.25 7.57408 4.24994 5.60684 6.73424 5.62728H12.4396C12.8817 5.62728 13.2396 5.97559 13.2396 6.40599C13.2396 6.83637 12.8817 7.18471 12.4396 7.18471H6.73424C5.15529 7.18471 3.87106 8.43469 3.87106 9.97155V17.6354C3.87106 19.1723 5.15529 20.4222 6.73424 20.4222L14.629 20.4224C16.208 20.4224 17.4922 19.1724 17.4922 17.6355V12.0823Z"
-            fill="white"
-          />
-        </svg>
-        <div
-          class="_146-4232"
-          style={{ left: "580px!important", top: "20px!important" }}
-        >
-          #{state.pocket && state.pocket._id}
-        </div>
+          <svg
+            class="popup-2"
+            width="25"
+            height="24"
+            viewBox="0 0 25 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M15.5975 2.53324H21.4502C21.8924 2.53324 22.2502 2.88152 22.2502 3.31191L22.2503 9.00856C22.2503 9.43893 21.8925 9.78727 21.4503 9.78727C21.0081 9.78727 20.6502 9.43895 20.6502 9.00856V5.19714L12.3765 13.2503C12.2291 13.3938 12.0186 13.4757 11.808 13.4757C11.5975 13.4757 11.387 13.3938 11.2396 13.2503C10.9238 12.943 10.9238 12.4511 11.2396 12.1439L19.5133 4.09066H15.5975C15.1553 4.09066 14.7975 3.74233 14.7975 3.31195C14.7975 2.88158 15.1553 2.53324 15.5975 2.53324ZM17.4922 12.0823C17.4922 11.6519 17.8501 11.3036 18.2923 11.3036C18.7345 11.3036 19.0921 11.6724 19.1131 12.1026L19.1133 17.6354C19.1133 20.0533 17.0922 22 14.629 22H6.73424C4.24998 22 2.25 20.0533 2.25 17.6558V9.97148C2.25 7.57408 4.24994 5.60684 6.73424 5.62728H12.4396C12.8817 5.62728 13.2396 5.97559 13.2396 6.40599C13.2396 6.83637 12.8817 7.18471 12.4396 7.18471H6.73424C5.15529 7.18471 3.87106 8.43469 3.87106 9.97155V17.6354C3.87106 19.1723 5.15529 20.4222 6.73424 20.4222L14.629 20.4224C16.208 20.4224 17.4922 19.1724 17.4922 17.6355V12.0823Z"
+              fill="white"
+            />
+          </svg>
+        </a>
       </div>
       <div class="frame-48098193">
         <div class="frame-48098188">
           <div class="pool-info-desk">
-            <div class="pool-info">Pool Info</div>
+            <div class="pool-info">💼 Pool Info</div>
 
             <div class="frame-48097847">
+              <div class="frame-480978472">
+                <div class="strategy2">ID</div>
+
+                <div class="frame-48097840">
+                  <div class="frame-48098084">
+                    #{state.pocket && state.pocket._id}
+                  </div>
+                </div>
+              </div>
+
+              <div class="frame-480978472">
+                <div class="strategy2">Frequency</div>
+
+                <div class="frame-48097840">
+                  <div class="frame-48098084">Hourly</div>
+                </div>
+              </div>
+
               <div class="frame-480978472">
                 <div class="strategy2">Total deposited</div>
 
@@ -821,7 +962,7 @@ const pocketDetailScreen = () => {
           </div>
 
           <div class="progress-desk">
-            <div class="end-conditions">Progress</div>
+            <div class="end-conditions">💰 Progress</div>
             <div class="frame-480978473">
               <div class="frame-48097849">
                 <div class="strategy2">Total invested</div>
@@ -845,7 +986,7 @@ const pocketDetailScreen = () => {
                   <div class="frame-48098084">
                     <div class="_10-usdc-monthly">
                       {state.pocket &&
-                        `${state.pocket.currentBatchAmount} BATCHES`}
+                        `${state.pocket.currentBatchAmount} BATCH(ES)`}
                     </div>
                   </div>
                 </div>
@@ -870,16 +1011,10 @@ const pocketDetailScreen = () => {
 
                 <div class="frame-48097840">
                   <div class="frame-48098084">
-                    {state.pocket && state.targetToken && state.baseToken && (
-                      <div class="_10-usdc-monthly2">
-                        1 {state.baseToken?.symbol} ={" "}
-                        {(
-                          state.pocket.currentReceivedTargetToken /
-                          state.pocket.currentSpentBaseToken
-                        ).toFixed(3)}{" "}
-                        {state.targetToken?.symbol}
-                      </div>
-                    )}
+                    <div class="_10-usdc-monthly2">
+                      1 {state.targetToken?.symbol} = {state.pocket?.avgPrice}{" "}
+                      {state.baseToken?.symbol}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -888,7 +1023,19 @@ const pocketDetailScreen = () => {
                 <div class="strategy2">APL (ROI)</div>
                 <div class="frame-48097840">
                   <div class="frame-48098084">
-                    <div class="_10-usdc-monthly3">+ 0.00 SOL (0.00%)</div>
+                    <div
+                      class="_10-usdc-monthly3"
+                      style={{
+                        color: (state.pocket?.currentROIValue || "0").includes(
+                          "-"
+                        )
+                          ? "red"
+                          : undefined,
+                      }}
+                    >
+                      {state.pocket?.currentROIValue} {state.baseToken?.symbol}{" "}
+                      ({state.pocket?.currentROI}%)
+                    </div>
                   </div>
                 </div>
               </div>
@@ -898,7 +1045,7 @@ const pocketDetailScreen = () => {
 
         <div class="frame-48098192">
           <div class="next-batch-desk">
-            <div class="next-batch">Next Batch</div>
+            <div class="next-batch">🔥 Next Batch</div>
 
             <div class="frame-480978482">
               <div class="frame-480978472">
@@ -994,14 +1141,14 @@ const pocketDetailScreen = () => {
                     onClick={() => handleDepositPocket()}
                     style={{ marginTop: "10px" }}
                   >
-                    <div class="button2">Deposit Now</div>
+                    <div class="button2">💸 Deposit Now</div>
                   </div>
                 </>
               )}
             </div>
           </div>
           <div class="tp-sl">
-            <div class="tp-sl2">TP/SL</div>
+            <div class="tp-sl2">💵 TP/SL</div>
 
             <div class="frame-48097847">
               <div class="frame-480978472">
@@ -1012,7 +1159,7 @@ const pocketDetailScreen = () => {
                     <div class="_10-usdc-monthly">
                       {state.pocket && state.pocket.takeProfitCondition
                         ? `at price ${state.pocket.takeProfitCondition.value}  ${state.baseToken.symbol}`
-                        : `N/A`}
+                        : `Coming soon`}
                     </div>
                   </div>
                 </div>
@@ -1026,13 +1173,14 @@ const pocketDetailScreen = () => {
                     <div class="_10-usdc-monthly">
                       {state.pocket && state.pocket.stopLossCondition
                         ? `at price ${state.pocket.stopLossCondition.value}  ${state.baseToken.symbol}`
-                        : `N/A`}
+                        : `Coming soon`}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="status-desk">
             <div class="status">Status</div>
             <div class="frame-48098267">
@@ -1080,8 +1228,8 @@ const pocketDetailScreen = () => {
                 <div class="iconly-light-arrow-right"></div>
                 <div class="button4">
                   {state.pocket.status === "POOL_STATUS::CLOSED"
-                    ? "Withdraw Pocket"
-                    : "Close Pocket"}
+                    ? "💳 Withdraw Fund"
+                    : "💀 Close Strategy"}
                 </div>
                 <div class="iconly-light-arrow-right"></div>
               </div>
@@ -1092,10 +1240,17 @@ const pocketDetailScreen = () => {
     </>
   );
 };
+const renderScreenTitle = () => {
+  if (state.currentScreen === 0) return "🏆 Your active strategies";
+  if (state.currentScreen === 1) return "🚀 Create a strategy";
+
+  return "🥽 Strategy performance";
+};
 
 const renderAppScreen = () => {
   if (state.currentScreen === 0) return pocketListScreen();
   if (state.currentScreen === 1) return createPocketScreen();
+
   return pocketDetailScreen();
 };
 
@@ -1121,73 +1276,105 @@ return (
           </button>
         )}
         <div class="pocket-detail">
-          {state.currentScreen ? "Pocket Detail" : "Pocket List"}
+          {renderScreenTitle()}
           {state.currentScreen === 2 && state.pocket._id && (
-            <div
-              class="sync-button"
-              style={{ cursor: "pointer", marginLeft: "10px" }}
-              onClick={() => handleSyncPocket()}
-            >
-              <div class="sync">Sync Pocket</div>
-              <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
-                <div class="ic-16-refresh">
-                  <svg
-                    class="refresh-2"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M14.6668 7.99967C14.6668 11.6797 11.6802 14.6663 8.00016 14.6663C4.32016 14.6663 2.0735 10.9597 2.0735 10.9597M2.0735 10.9597H5.08683M2.0735 10.9597V14.293M1.3335 7.99967C1.3335 4.31967 4.2935 1.33301 8.00016 1.33301C12.4468 1.33301 14.6668 5.03967 14.6668 5.03967M14.6668 5.03967V1.70634M14.6668 5.03967H11.7068"
-                      stroke="#735CF7"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+            <>
+              <div
+                class="sync-button"
+                style={{ cursor: "pointer", marginLeft: "10px" }}
+                onClick={() => handleSyncPocket()}
+              >
+                <div class="sync">Refresh</div>
+                <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
+                  <div class="ic-16-refresh">
+                    <svg
+                      class="refresh-2"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.6668 7.99967C14.6668 11.6797 11.6802 14.6663 8.00016 14.6663C4.32016 14.6663 2.0735 10.9597 2.0735 10.9597M2.0735 10.9597H5.08683M2.0735 10.9597V14.293M1.3335 7.99967C1.3335 4.31967 4.2935 1.33301 8.00016 1.33301C12.4468 1.33301 14.6668 5.03967 14.6668 5.03967M14.6668 5.03967V1.70634M14.6668 5.03967H11.7068"
+                        stroke="#735CF7"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
+        </div>
+        <div>
+          <a
+            class="sync-button"
+            style={{ height: 40, cursor: "pointer", marginLeft: "10px" }}
+            href="https://bos.gg/#/cavies.near/widget/hamsterpocket-guide"
+            target="_blank"
+          >
+            <div class="sync" style={{ color: "white" }}>
+              📚 Watch tutorial
+            </div>
+          </a>{" "}
         </div>
         {state.currentScreen === 0 && (
           <>
-            <div
-              class="button-primary-36-px"
-              style={{ cursor: "pointer" }}
-              onClick={() => State.update({ currentScreen: 1 })}
-            >
-              <div class="button-connectwallet">Create Pocket</div>
-            </div>
-            <div
-              class="sync-button"
-              style={{ cursor: "pointer" }}
-              onClick={() => handleSyncWallet()}
-            >
-              <div class="sync">Sync</div>
-              <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
-                <div class="ic-16-refresh">
-                  <svg
-                    class="refresh-2"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M14.6668 7.99967C14.6668 11.6797 11.6802 14.6663 8.00016 14.6663C4.32016 14.6663 2.0735 10.9597 2.0735 10.9597M2.0735 10.9597H5.08683M2.0735 10.9597V14.293M1.3335 7.99967C1.3335 4.31967 4.2935 1.33301 8.00016 1.33301C12.4468 1.33301 14.6668 5.03967 14.6668 5.03967M14.6668 5.03967V1.70634M14.6668 5.03967H11.7068"
-                      stroke="#735CF7"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+            {state.sender !== null && state.chainId === 56 ? (
+              <>
+                <div
+                  class="button-primary-36-px"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => State.update({ currentScreen: 1 })}
+                >
+                  <div class="button-connectwallet" style={{ color: "white" }}>
+                    🚀 Create
+                  </div>
                 </div>
-              </div>
-            </div>
+                <div
+                  class="sync-button"
+                  style={{
+                    cursor: "pointer",
+                    marginLeft: "10px",
+                    height: "40px",
+                  }}
+                  onClick={() => handleSyncWallet()}
+                >
+                  <div class="sync" style={{ color: "white" }}>
+                    Refresh
+                  </div>
+                  <div class="ic-16-refresh" style={{ marginLeft: "10px" }}>
+                    <div class="ic-16-refresh">
+                      <svg
+                        class="refresh-2"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M14.6668 7.99967C14.6668 11.6797 11.6802 14.6663 8.00016 14.6663C4.32016 14.6663 2.0735 10.9597 2.0735 10.9597M2.0735 10.9597H5.08683M2.0735 10.9597V14.293M1.3335 7.99967C1.3335 4.31967 4.2935 1.33301 8.00016 1.33301C12.4468 1.33301 14.6668 5.03967 14.6668 5.03967M14.6668 5.03967V1.70634M14.6668 5.03967H11.7068"
+                          stroke="#735CF7"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <Web3Connect
+                style={{ color: "white" }}
+                className="button-primary-36-px button-connectwallet text-white"
+                connectLabel="🧳 Connect wallet"
+              />
+            )}
           </>
         )}
       </div>
