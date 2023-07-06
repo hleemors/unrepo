@@ -810,11 +810,24 @@ const createPocketScreen = () => {
             </div>
             <div>
               <div class="frame" style={{ marginBottom: "32px" }}>
-                <select
-                  class="token-select"
-                  onChange={(e) => {
+                <Typeahead
+                  defaultSelected={[
+                    {
+                      id: state.selectedTokenAddress,
+                      label:
+                        state.whiteLists[state.selectedTokenAddress].symbol,
+                    },
+                  ]}
+                  filterBy={() => true}
+                  options={TIME_CONDITIONS.map((item) => {
+                    return {
+                      id: item.label,
+                      label: item.label,
+                    };
+                  })}
+                  onChange={(value) => {
                     const option = TIME_CONDITIONS.find(
-                      (item) => item.label === e.target.value
+                      (item) => item.label === value[0].id
                     );
                     const proccessFrequency = convertDurationsTime(
                       option.value
@@ -823,15 +836,7 @@ const createPocketScreen = () => {
                       frequency: proccessFrequency,
                     });
                   }}
-                >
-                  {TIME_CONDITIONS.map((item, index) => {
-                    return (
-                      <option value={item.label} key={`frequency-item${index}`}>
-                        {item.label}
-                      </option>
-                    );
-                  })}
-                </select>
+                />
               </div>
             </div>
           </div>
@@ -929,7 +934,12 @@ const pocketDetailScreen = () => {
 
                 <div class="frame-48097840">
                   {console.log(state.pocket.frequency.seconds, TIME_CONDITIONS)}
-                  <div class="frame-48098084">{TIME_CONDITIONS.find((item) => item.secondValue*60 === state.pocket.frequency.seconds).label || "⏰"}</div>
+                  <div class="frame-48098084">
+                    {TIME_CONDITIONS.find(
+                      (item) =>
+                        item.secondValue * 60 === state.pocket.frequency.seconds
+                    ).label || "⏰"}
+                  </div>
                 </div>
               </div>
 
