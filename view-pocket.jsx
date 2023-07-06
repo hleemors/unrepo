@@ -1280,7 +1280,10 @@ return (
     <div class="on-going">
       <div class="frame-48098139">
         {state.currentScreen > 0 && (
-          <button onClick={() => State.update({ currentScreen: 0 })}>
+          <button onClick={() => {
+            State.update({ currentScreen: 0 });
+            State.update({ frequency: "3600" });
+          }}>
             <svg
               class="arrow-chevron-big-left"
               width="25"
